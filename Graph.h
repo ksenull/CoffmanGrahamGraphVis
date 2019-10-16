@@ -15,4 +15,8 @@ using Vertex = NamedType<int, VertexParameter>;
 using Edges = NamedType<vector<Vertex>, EdgesParameter>;
 using Graph = NamedType<vector<Edges>, GraphParameter>;
 
+//using Vertex = int;
+//using Edges = vector<Vertex>;
+//using Graph = vector<Edges>;
+
 void PrintGraph(const Graph& g);
