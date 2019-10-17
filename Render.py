@@ -2,7 +2,7 @@ import pygame
 
 
 DISPLAY_WIDTH = 800
-DISPLAY_HEIGHT = 600
+DISPLAY_HEIGHT = 800
 CAPTION = "Coffman-Graham graph layering algorithm visualization"
 
 WHITE = (255, 255, 255)
@@ -89,7 +89,7 @@ def Render(graph, layers):
             if event.type == pygame.QUIT:
                 pressed_exit = True
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
-                pygame.image.save(screen, "images/Layering_2.png")
+                pygame.image.save(screen, "images/Layering_4.png")
 
         screen.fill(WHITE)
         drawGraphByLayers(graph, layers, screen)

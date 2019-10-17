@@ -2,16 +2,25 @@
 #include <CoffmanGrahamAlgorithm.h>
 
 int main() {
-	Graph g({Edges({ Vertex(5) }),
-			 Edges({ Vertex(0), Vertex(3) }),
+	Graph g({Edges({ Vertex(9) }),
+			 Edges({ Vertex(0), Vertex(7), Vertex(8) }),
+			 Edges({ Vertex(1),  Vertex(3) }),
+			 Edges({ Vertex(5), Vertex(6), Vertex(7), Vertex(9) }),
 			 Edges(),
-			 Edges({ Vertex(4), Vertex(5) }),
 			 Edges(),
+			 Edges(),
+			 Edges({ Vertex(8) }),
+			 Edges({ Vertex(10), Vertex(11) }),
+			 Edges({ Vertex(10) }),
+			 Edges({ Vertex(12) }),
+			 Edges({ Vertex(12), Vertex(13) }),
+			 Edges({ Vertex(14) }),
+			 Edges({ Vertex(14) }),
 			 Edges()
 	});
 	PrintGraph(g);
 
-	CoffmanGrahamAlgorithm algorithm(g, LayeringWidth(2));
+	CoffmanGrahamAlgorithm algorithm(g, LayeringWidth(4));
 	auto layers = algorithm.Apply();
 
 //	// test reversing

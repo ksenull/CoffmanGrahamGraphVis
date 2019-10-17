@@ -12,6 +12,7 @@ Here are examples of visualized layerings:
 
 ![alt text](images/Layering_2.png)
 ![alt text](images/Layering_3.png)
+![alt text](images/Layering_4.png)
 
 ## How to use
 ### Prerequisites:
