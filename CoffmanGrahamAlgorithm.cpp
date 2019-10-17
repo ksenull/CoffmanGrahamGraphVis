@@ -1,13 +1,13 @@
 #include <CoffmanGrahamAlgorithm.h>
 #include <set>
-#include <numeric>
-#include <functional>
+#include <map>
 
 
-void CoffmanGrahamAlgorithm::Apply() {
+vector<vector<Vertex>> CoffmanGrahamAlgorithm::Apply() {
 	buildReversed();
 	labelLexicographically();
 	fillLayers();
+	return layers;
 }
 
 void CoffmanGrahamAlgorithm::buildReversed() {
@@ -56,7 +56,35 @@ void CoffmanGrahamAlgorithm::labelLexicographically() {
 }
 
 void CoffmanGrahamAlgorithm::fillLayers() {
+    vector<Vertex> layer;
+    map<int, Vertex> unvisited;
 
+    // get all unvisited and order them by label
+    for (int i = 0; i < labels.size(); i++) {
+        unvisited.emplace(labels[i], Vertex(i));
+    }
+
+    while (!unvisited.empty()) {
+        // get unvisited with maximum label
+        Vertex v(unvisited.rbegin()->second);
+        Edges children = graph.get()[v.get()];
+        if (any_of(children.get().begin(), children.get().end(), [&](Vertex u) {
+            return unvisited.find(labels[u.get()]) != unvisited.end();
+        })) {
+            continue;
+        }
+        if (layer.size() < width.get() and none_of(children.get().begin(), children.get().end(), [&](Vertex u) {
+            return find(layer.begin(), layer.end(), u) != layer.end();
+        })) { // children should be on previous layer means that they should not be in current layer
+            layer.emplace_back(v);
+        } else {
+            layers.emplace_back(layer);
+            layer.clear();
+            layer.emplace_back(v);
+        }
+        unvisited.erase(unvisited.find(labels[v.get()]));
+    }
+    layers.emplace_back(layer);
 }
 
 set<int> CoffmanGrahamAlgorithm::getParentLabels( Vertex v ) {
